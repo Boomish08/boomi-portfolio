@@ -1,0 +1,28 @@
+# ============================================================
+# .gitignore — files Git should NEVER upload to GitHub
+# ============================================================
+
+# Node.js packages (added later in the React / backend phase)
+node_modules/
+
+# Secret keys and passwords — NEVER commit these
+.env
+.env.*
+
+# Build output (React phase)
+dist/
+build/
+.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Operating-system clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/*
+!.vscode/extensions.json

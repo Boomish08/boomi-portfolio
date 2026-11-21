@@ -1,0 +1,132 @@
+/* ============================================================
+   FILE:     css/animations.css
+   PURPOSE:  Every MOVING effect lives here, so style.css stays tidy.
+
+   HOW CSS ANIMATION WORKS:
+     1. @keyframes name { from {...} to {...} }   -> describes the movement
+     2. animation: name 1s ease ...;              -> plays it on an element
+   ============================================================ */
+
+
+/* ---------- Hero entrance: each piece fades up one after another ----------
+   Each hero element has style="--d:0.4s" in the HTML. That number becomes the
+   animation-delay, which creates the "one by one" effect.                    */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-in { animation: heroIn 1s var(--ease) both; animation-delay: var(--d, 0s); }
+
+
+/* ---------- Scroll reveal ----------
+   js/animations.js adds the class "is-visible" when an element scrolls into view.
+   html.js is added by a tiny script in <head> — so if JavaScript ever fails,
+   the content stays visible instead of staying hidden.                         */
+.js .reveal { opacity: 0; }
+
+@keyframes revealUp    { from { opacity: 0; transform: translateY(34px); } }
+@keyframes revealLeft  { from { opacity: 0; transform: translateX(-40px); } }
+@keyframes revealRight { from { opacity: 0; transform: translateX(40px); } }
+
+.js .reveal.is-visible {
+  opacity: 1;
+  /* "backwards" = use the FROM state during the delay, then hand control back to normal CSS
+     (so card hover effects still work afterwards). */
+  animation: revealUp 0.95s var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 110ms);       /* --i is set per card = staggered entrance */
+}
+.js .reveal-left.is-visible  { animation-name: revealLeft; }
+.js .reveal-right.is-visible { animation-name: revealRight; }
+
+
+/* ---------- Floating (hero portrait + chips) ---------- */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+.portrait   { animation: floatY 7s ease-in-out infinite; }
+.float-chip { animation: floatY 5s ease-in-out infinite; }
+.chip-2     { animation-duration: 6s;   animation-delay: -2s; }
+.chip-3     { animation-duration: 5.5s; animation-delay: -3.5s; }
+
+
+/* ---------- Typing caret blink ---------- */
+@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.caret { animation: blink 1s steps(1) infinite; }
+
+
+/* ---------- Gold glow breathing behind the portrait ---------- */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+.portrait-glow { animation: glowPulse 5s ease-in-out infinite; }
+
+
+/* ---------- Scroll hint (little mouse) ---------- */
+@keyframes wheelMove {
+  0%   { opacity: 0; transform: translateY(0); }
+  30%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(12px); }
+}
+.wheel { animation: wheelMove 1.8s ease-in-out infinite; }
+.scroll-hint:hover { color: var(--gold); }
+
+
+/* ---------- Pulse dot (next to "Currently Exploring") ---------- */
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+  100% { box-shadow: 0 0 0 12px rgba(212,175,55,0); }
+}
+.pulse-dot { animation: pulse 1.8s ease-out infinite; }
+.learn-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: pulse 1.8s ease-out infinite; }
+
+
+/* ---------- Gold shimmer on the BOOMI. name in the hero ---------- */
+@keyframes shimmer { to { background-position: 200% center; } }
+.hero-title .gold-text {
+  background-size: 200% auto;
+  animation: shimmer 6s linear infinite;
+}
+
+
+/* ---------- Music equaliser bars (visible only while music plays) ---------- */
+@keyframes eqBar { 0%, 100% { height: 3px; } 50% { height: 14px; } }
+.music-player.playing .eq i { animation: eqBar 0.9s ease-in-out infinite; }
+.music-player.playing .eq i:nth-child(2) { animation-delay: 0.25s; }
+.music-player.playing .eq i:nth-child(3) { animation-delay: 0.5s; }
+
+
+/* ---------- Certificate modal ---------- */
+@keyframes modalIn   { from { opacity: 0; transform: translateY(24px) scale(0.96); } }
+@keyframes backdropIn { from { opacity: 0; } }
+.cert-modal[open]            { animation: modalIn 0.45s var(--ease); }
+.cert-modal[open]::backdrop  { animation: backdropIn 0.4s ease; }
+
+
+/* ---------- Motto words: gentle glow when hovered ---------- */
+.motto-words li:not(.diamond) { transition: color 0.4s, text-shadow 0.4s; }
+.motto-words li:not(.diamond):hover { color: var(--champagne); text-shadow: 0 0 18px rgba(212,175,55,0.6); }
+
+
+/* ============================================================
+   ACCESSIBILITY: respect "reduce motion"
+   Some people get dizzy or distracted by movement and turn on
+   "Reduce motion" in their device settings. This block switches
+   our animations off for them. (js/animations.js checks the same setting.)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+  .js .reveal { opacity: 1; }
+  .hero-in    { opacity: 1; }
+  .caret      { animation: none; opacity: 1; }
+  #particles  { display: none; }
+}

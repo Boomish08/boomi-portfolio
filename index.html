@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  FILE:     index.html
+  PURPOSE:  The STRUCTURE (skeleton) of the whole portfolio.
+            HTML decides WHAT is on the page. CSS decides how it LOOKS.
+            JavaScript decides how it BEHAVES.
+  LINKS TO: css/style.css, css/responsive.css, css/animations.css
+            js/main.js, js/navigation.js, js/cursor.js,
+            js/animations.js, js/music.js
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOOMI. | Boomish V — Aspiring Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Boomish V (BOOMI.), a B.Sc. Computer Technology student and aspiring Full-Stack Developer exploring modern web technologies and Artificial Intelligence." />
+  <meta name="author" content="Boomish V" />
+  <meta name="theme-color" content="#080808" />
+
+  <!-- Social share preview (used when the link is shared on WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:title" content="BOOMI. | Boomish V — Aspiring Full-Stack Developer" />
+  <meta property="og:description" content="Less talk. More work. Observe. Learn. Adapt. Build." />
+  <meta property="og:type" content="website" />
+
+  <!-- Tiny gold "B" icon for the browser tab, written inline so no extra file is needed -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080808'/%3E%3Crect x='2' y='2' width='60' height='60' rx='12' fill='none' stroke='%23D4AF37' stroke-width='3'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23D4AF37'%3EB%3C/text%3E%3C/svg%3E" />
+
+  <!-- Google Fonts: Cormorant Garamond (premium headlines) + Outfit (clean body text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Our own CSS. ORDER MATTERS: later files can override earlier ones. -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Tells CSS that JavaScript is running (so reveal animations only hide things when JS works) -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+
+<body>
+
+  <!-- ============ ICON LIBRARY (SVG sprite) ============
+       Each <symbol> is drawn once here. Anywhere else we write
+       <svg><use href="#i-github"></use></svg> to reuse it. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></symbol>
+      <symbol id="i-gamepad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258A4 4 0 0 0 17.32 5z"/></symbol>
+      <symbol id="i-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M17 5h4M5 17v4M3 19h4"/></symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.52.85l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 7 4.5z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/></symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/></symbol>
+      <symbol id="i-next" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><rect x="17" y="4" width="3" height="16" rx="1"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+      <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Skip link: lets keyboard users jump straight to the content -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Thin gold bar at the very top that fills as you scroll (see js/navigation.js) -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Custom cursor elements (desktop only, see js/cursor.js) -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Floating gold dust drawn on a canvas (see js/animations.js) -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAVIGATION BAR ===================== -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-inner container" aria-label="Main navigation">
+      <a href="#home" class="brand" aria-label="BOOMI. — back to top">BOOMI<span class="brand-dot">.</span></a>
+
+      <!-- Hamburger button (only visible on small screens) -->
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certificates" class="nav-link">Certificates</a></li>
+        <li><a href="#interests" class="nav-link">Interests</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== 1. HOME / HERO ===================== -->
+    <section class="hero section-anchor" id="home" aria-labelledby="heroTitle">
+      <div class="container hero-grid">
+
+        <div class="hero-text">
+          <p class="eyebrow hero-in" style="--d:0.1s"><span class="eyebrow-line"></span>LESS TALK. MORE WORK.</p>
+
+          <h1 class="hero-title hero-in" id="heroTitle" style="--d:0.25s">
+            Hello, I'm <span class="gold-text">BOOMI.</span>
+          </h1>
+
+          <!-- This line types itself using js/animations.js -->
+          <p class="hero-typing hero-in" style="--d:0.4s" aria-live="polite">
+            <span class="typing-static">I'm an aspiring</span>
+            <span class="typing-word" id="typingText">Full-Stack Developer</span><span class="caret" aria-hidden="true"></span>
+          </p>
+
+          <p class="hero-sub hero-in" style="--d:0.55s">
+            Aspiring Full-Stack Developer exploring modern web technologies, Artificial Intelligence and the future of intelligent software.
+          </p>
+
+          <p class="hero-intro hero-in" style="--d:0.7s">
+            Hello! I am Boomish V, pursuing my third year of B.Sc. Computer Technology at KPR College of Arts, Science and Research. I am an independent learner and gamer who shows equal interest in both. Currently, I am learning new technology skills to develop my technical and AI knowledge.
+          </p>
+
+          <div class="hero-actions hero-in" style="--d:0.85s">
+            <a href="#projects" class="btn btn-primary">Explore My Work <svg class="icon"><use href="#i-arrow"></use></svg></a>
+            <a href="#about" class="btn btn-outline">About Me</a>
+          </div>
+
+          <ul class="social-row hero-in" style="--d:1s" aria-label="Social links">
+            <li><a href="https://github.com/Boomish08" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="GitHub profile (opens in a new tab)"><svg class="icon"><use href="#i-github"></use></svg></a></li>
+            <li><a href="https://www.linkedin.com/in/boomish2013" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="LinkedIn profile (opens in a new tab)"><svg class="icon"><use href="#i-linkedin"></use></svg></a></li>
+            <li><a href="https://www.instagram.com/_b.o.o.m.i.s.h_13" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Instagram profile (opens in a new tab)"><svg class="icon"><use href="#i-instagram"></use></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual hero-in" style="--d:0.5s">
+          <div class="portrait">
+            <div class="portrait-glow" aria-hidden="true"></div>
+            <div class="portrait-frame">
+              <img src="assets/images/boomi-profile.jpg" alt="Portrait of Boomish V standing beside a black and gold lamp post" width="900" height="1313" fetchpriority="high" />
+            </div>
+            <!-- Floating chips: purely decorative -->
+            <span class="float-chip chip-1" aria-hidden="true">Python</span>
+            <span class="float-chip chip-2" aria-hidden="true">SQL</span>
+            <span class="float-chip chip-3" aria-hidden="true">AI</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-hint" aria-label="Scroll down to About section">
+        <span class="mouse"><span class="wheel"></span></span>
+        <span class="scroll-text">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ===================== MOTTO BAND ===================== -->
+    <section class="motto" aria-label="Brand motto">
+      <div class="container">
+        <p class="motto-main reveal">LESS TALK. <span class="gold-text">MORE WORK.</span></p>
+        <ul class="motto-words reveal" style="--i:1">
+          <li>Observe</li><li class="diamond" aria-hidden="true">◆</li>
+          <li>Learn</li><li class="diamond" aria-hidden="true">◆</li>
+          <li>Adapt</li><li class="diamond" aria-hidden="true">◆</li>
+          <li>Build</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== 2. ABOUT ===================== -->
+    <section class="section section-anchor" id="about" aria-labelledby="aboutTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">01</span>
+          <h2 id="aboutTitle">About Me</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-text reveal reveal-left">
+            <p class="lead">I'm Boomish V, a Computer Technology student who believes in observing, learning and building more than talking.</p>
+            <p>Currently pursuing my third year of B.Sc. Computer Technology at KPR College of Arts, Science and Research, I'm exploring modern web development, Artificial Intelligence and emerging technologies.</p>
+            <p>I'm an independent learner with interests in technology, gaming and gadgets. I enjoy understanding how things work, adapting to new ideas and continuously improving my skills.</p>
+            <p>I'm still on my learning journey, but I'm building towards a future in the corporate technology industry.</p>
+          </div>
+
+          <aside class="about-card card reveal reveal-right" aria-label="Quick facts">
+            <h3 class="card-kicker">Quick Facts</h3>
+            <ul class="facts">
+              <li><svg class="icon"><use href="#i-pin"></use></svg><span><strong>Based in</strong> Avinashi, Tamil Nadu, India</span></li>
+              <li><svg class="icon"><use href="#i-cap"></use></svg><span><strong>Studying</strong> B.Sc. Computer Technology, 3rd year</span></li>
+              <li><svg class="icon"><use href="#i-cpu"></use></svg><span><strong>Focus</strong> Full-Stack Development &amp; AI-integrated database systems</span></li>
+              <li><svg class="icon"><use href="#i-sparkles"></use></svg><span><strong>Mindset</strong> Introverted, observant, adaptive</span></li>
+            </ul>
+          </aside>
+        </div>
+
+        <!-- Career goal -->
+        <div class="goal-grid">
+          <article class="card goal-card reveal">
+            <h3 class="card-kicker">Career Goal</h3>
+            <p class="goal-quote">“To work in a corporate technology industry and develop my technical skills while contributing to real-world software development projects.”</p>
+          </article>
+          <article class="card goal-card reveal" style="--i:1">
+            <h3 class="card-kicker">Future Interests</h3>
+            <ul class="chip-list">
+              <li>Full-Stack Development</li>
+              <li>Artificial Intelligence</li>
+              <li>Machine Learning</li>
+              <li>Modern Web Technologies</li>
+              <li>AI-assisted Development</li>
+              <li>Technology &amp; Innovation</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 3. EDUCATION ===================== -->
+    <section class="section section-anchor" id="education" aria-labelledby="eduTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">02</span>
+          <h2 id="eduTitle">Education</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+
+        <div class="edu-grid">
+          <article class="card edu-main reveal">
+            <span class="badge">Currently Studying</span>
+            <h3>B.Sc. Computer Technology</h3>
+            <p class="edu-school">KPR College of Arts, Science and Research</p>
+            <ul class="meta-list">
+              <li><svg class="icon"><use href="#i-cap"></use></svg> Third Year · 2024 – 2027</li>
+              <li><svg class="icon"><use href="#i-pin"></use></svg> Tamil Nadu, India</li>
+            </ul>
+          </article>
+
+          <article class="card edu-side reveal" style="--i:1">
+            <h3>Internship</h3>
+            <p class="edu-school">DAGSLORE Technology Solutions</p>
+            <p class="muted">Online internship under the Naan Mudhalvan scheme in Oracle Database — hands-on experience with database design, SQL querying and data management.</p>
+          </article>
+
+          <article class="card edu-side reveal" style="--i:2">
+            <h3>Higher Secondary (12th)</h3>
+            <p class="edu-school">Venkateswara Vidhyalaya Matriculation Higher Secondary School</p>
+            <p class="muted">Percentage 87%.</p>
+          </article>
+
+          <article class="card edu-side reveal" style="--i:3">
+            <h3>Secondary School (10th)</h3>
+            <p class="edu-school">Venkateswara Vidhyalaya Matriculation Higher Secondary School</p>
+            <p class="muted">Percentage 59%.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 4 + 5. SKILLS & CURRENTLY LEARNING ===================== -->
+    <section class="section section-anchor" id="skills" aria-labelledby="skillsTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">03</span>
+          <h2 id="skillsTitle">Skills</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+
+        <h3 class="sub-title reveal">Studied &amp; Practised</h3>
+        <p class="sub-note reveal">Honest student-level indicators — no made-up percentages.</p>
+
+        <!-- Cards are created by js/main.js from the "skills" array -->
+        <div class="skills-grid" id="skillsGrid"></div>
+
+        <ul class="legend reveal" aria-label="Skill level legend">
+          <li><span class="pips"><i class="on"></i><i></i><i></i></span> Foundation</li>
+          <li><span class="pips"><i class="on"></i><i class="on"></i><i></i></span> Practising</li>
+          <li><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i></span> Hands-on</li>
+        </ul>
+
+        <h3 class="sub-title learning-title reveal" id="learning">Currently Exploring <span class="pulse-dot" aria-hidden="true"></span></h3>
+        <p class="sub-note reveal">My learning journey right now — not yet mastered, and I'm proud to say so.</p>
+
+        <!-- Cards are created by js/main.js from the "learning" array -->
+        <div class="learning-grid" id="learningGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 6. LEARNING JOURNEY / TIMELINE ===================== -->
+    <section class="section section-anchor" id="journey" aria-labelledby="journeyTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">04</span>
+          <h2 id="journeyTitle">Learning Journey</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+
+        <ol class="timeline">
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <time class="tl-date">2024</time>
+            <h3>Started B.Sc. Computer Technology</h3>
+            <p>Began my degree at KPR College of Arts, Science and Research.</p>
+          </li>
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <time class="tl-date">Feb 2026</time>
+            <h3>Oracle AI Foundations</h3>
+            <p>Earned the Oracle Certified Foundations Associate: OCI 2025 AI Foundations Associate.</p>
+          </li>
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <time class="tl-date">Jun 2026</time>
+            <h3>Front-End &amp; AI Programs</h3>
+            <p>Completed Front End Development (Naan Mudhalvan, conducted by Oracle) and YUVA AI For All (TCS iON, IndiaAI).</p>
+          </li>
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <time class="tl-date">Aug – Sep 2026</time>
+            <h3>NoviTech Masterclasses</h3>
+            <p>Two 30-day masterclasses: Full Stack Development and UI/UX Design.</p>
+          </li>
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <time class="tl-date">Sep 2026</time>
+            <h3>MERN Stack &amp; React JS — Gold</h3>
+            <p>Completed FutureSkills Prime programs in MERN Stack (91%) and React JS (86%), plus the Oracle AI Database Foundations Associate.</p>
+          </li>
+          <li class="tl-item tl-now reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <time class="tl-date">Now</time>
+            <h3>Building this portfolio</h3>
+            <p>Learning HTML, CSS and JavaScript by building my own site — with React, Node.js, Express and MongoDB coming next.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 7. PROJECTS ===================== -->
+    <section class="section section-anchor" id="projects" aria-labelledby="projectsTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">05</span>
+          <h2 id="projectsTitle">Projects</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+
+        <!-- Cards are created by js/main.js from the "projects" array -->
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 8. CERTIFICATES ===================== -->
+    <section class="section section-anchor" id="certificates" aria-labelledby="certTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">06</span>
+          <h2 id="certTitle">Certificates</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+        <p class="sub-note reveal">Eight certificates earned through courses and programs. Click “View Certificate” on any card for full details.</p>
+
+        <!-- Cards are created by js/main.js from the "certificates" array -->
+        <div class="cert-grid" id="certGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 9. INTERESTS ===================== -->
+    <section class="section section-anchor section-compact" id="interests" aria-labelledby="interestsTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">07</span>
+          <h2 id="interestsTitle">Interests</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+
+        <ul class="interest-grid">
+          <li class="interest card reveal"><svg class="icon icon-lg"><use href="#i-gamepad"></use></svg><span>Gaming</span></li>
+          <li class="interest card reveal" style="--i:1"><svg class="icon icon-lg"><use href="#i-headphones"></use></svg><span>Listening to Music</span></li>
+          <li class="interest card reveal" style="--i:2"><svg class="icon icon-lg"><use href="#i-cpu"></use></svg><span>Electronic Gadgets</span></li>
+          <li class="interest card reveal" style="--i:3"><svg class="icon icon-lg"><use href="#i-sparkles"></use></svg><span>Artificial Intelligence</span></li>
+          <li class="interest card reveal" style="--i:4"><svg class="icon icon-lg"><use href="#i-compass"></use></svg><span>Technology Exploration</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== 10. CONTACT ===================== -->
+    <section class="section section-anchor" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-num">08</span>
+          <h2 id="contactTitle">Get In Touch</h2>
+          <span class="head-line" aria-hidden="true"></span>
+        </header>
+
+        <div class="contact-grid">
+          <div class="contact-info reveal reveal-left">
+            <p class="lead">Open to internships, learning opportunities and conversations with fellow tech enthusiasts. I may be quiet — but I always reply.</p>
+
+            <div class="email-box card">
+              <svg class="icon icon-lg"><use href="#i-mail"></use></svg>
+              <div class="email-text">
+                <span class="muted small">Email</span>
+                <a href="mailto:minecrusher82@gmail.com" id="emailText">minecrusher82@gmail.com</a>
+              </div>
+              <button type="button" class="copy-btn" id="copyEmailBtn" aria-label="Copy email address">
+                <svg class="icon"><use href="#i-copy"></use></svg><span id="copyLabel">Copy</span>
+              </button>
+            </div>
+
+            <ul class="contact-links">
+              <li><a href="https://github.com/Boomish08" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-github"></use></svg> GitHub <svg class="icon icon-sm"><use href="#i-external"></use></svg></a></li>
+              <li><a href="https://www.linkedin.com/in/boomish2013" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-linkedin"></use></svg> LinkedIn <svg class="icon icon-sm"><use href="#i-external"></use></svg></a></li>
+              <li><a href="https://www.instagram.com/_b.o.o.m.i.s.h_13" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-instagram"></use></svg> Instagram <svg class="icon icon-sm"><use href="#i-external"></use></svg></a></li>
+            </ul>
+          </div>
+
+          <form class="contact-form card reveal reveal-right" id="contactForm" novalidate>
+            <h3 class="card-kicker">Send a Message</h3>
+
+            <div class="field">
+              <input type="text" id="name" name="name" placeholder=" " autocomplete="name" required minlength="2" />
+              <label for="name">Your name</label>
+              <p class="field-error" id="nameError" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required />
+              <label for="email">Your email</label>
+              <p class="field-error" id="emailError" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <textarea id="message" name="message" rows="5" placeholder=" " required minlength="10"></textarea>
+              <label for="message">Your message</label>
+              <p class="field-error" id="messageError" role="alert"></p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Send Message <svg class="icon"><use href="#i-arrow"></use></svg></button>
+
+            <!-- Success / error banner (shown by js/main.js) -->
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">BOOMI<span class="brand-dot">.</span></p>
+      <p class="footer-motto">Observe. Learn. Adapt. Build.</p>
+      <p class="muted small">© <span id="year">2026</span> Boomish V · Built with HTML, CSS &amp; JavaScript</p>
+    </div>
+    <a href="#home" class="to-top" id="toTop" aria-label="Back to top"><svg class="icon"><use href="#i-up"></use></svg></a>
+  </footer>
+
+  <!-- ===================== CERTIFICATE MODAL ===================== -->
+  <dialog class="cert-modal" id="certModal" aria-labelledby="certModalTitle">
+    <button type="button" class="modal-close" id="certModalClose" aria-label="Close certificate details"><svg class="icon"><use href="#i-close"></use></svg></button>
+    <div class="modal-body">
+      <div class="modal-preview" id="certPreview"></div>
+      <div class="modal-info">
+        <p class="eyebrow" id="certModalIssuer"></p>
+        <h3 id="certModalTitle"></h3>
+        <dl class="modal-details" id="certModalDetails"></dl>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ===================== MUSIC PLAYER ===================== -->
+  <div class="music-player" id="musicPlayer">
+    <button type="button" class="music-toggle" id="musicToggle" aria-expanded="false" aria-controls="musicPanel" aria-label="Open music player">
+      <svg class="icon"><use href="#i-note"></use></svg>
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+
+    <div class="music-panel" id="musicPanel" role="group" aria-label="Background music controls">
+      <p class="music-title" id="musicTitle">Interstellar Theme</p>
+      <p class="music-hint" id="musicHint">Music is off until you press play.</p>
+      <div class="music-controls">
+        <button type="button" class="music-btn music-btn-main" id="musicPlay" aria-label="Play music"><svg class="icon"><use href="#i-play"></use></svg></button>
+        <button type="button" class="music-btn" id="musicNext" aria-label="Next track" hidden><svg class="icon"><use href="#i-next"></use></svg></button>
+        <button type="button" class="music-btn" id="musicMute" aria-label="Mute music"><svg class="icon"><use href="#i-volume"></use></svg></button>
+        <input type="range" id="musicVolume" min="0" max="100" value="35" aria-label="Volume" />
+      </div>
+    </div>
+
+    <!-- preload="none" = the 7 MB file is NOT downloaded until the visitor presses play -->
+    <audio id="bgAudio" preload="none" loop></audio>
+  </div>
+
+  <!-- Our JavaScript. "defer" = run AFTER the page is built. Order matters. -->
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+  <script src="js/music.js" defer></script>
+</body>
+</html>
