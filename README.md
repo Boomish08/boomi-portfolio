@@ -1,11 +1,11 @@
 <div align="center">
 
-# BOOMI<span style="color:#D4AF37">.</span>
+# BOOMI.
 
 **LESS TALK. MORE WORK.**
 *Observe. Learn. Adapt. Build.*
 
-Personal developer portfolio of **Boomish V** — Royal Black & Gold theme.
+Personal developer portfolio of **Boomish V** — built with **React + Vite**, Royal Black & Gold theme.
 
 </div>
 
@@ -13,96 +13,104 @@ Personal developer portfolio of **Boomish V** — Royal Black & Gold theme.
 
 ## About the project
 
-A single-page portfolio built with plain **HTML, CSS and JavaScript** as part of my Full-Stack MERN learning journey (and my Letter of Recommendation project with Maiyyam Inc.). It showcases my education, skills, certificates, projects and what I am currently learning.
-
-The site will grow with my course: first HTML/CSS/JS, then React, then a Node.js + Express + MongoDB backend.
-
-## Objectives
-
-- Present my identity, education, skills and certificates professionally
-- Practise real web development: layout, responsive design, DOM scripting
-- Keep the code simple enough that I can explain every line
+A single-page portfolio built as part of my Full-Stack MERN learning journey (and my Letter of Recommendation project with Maiyyam Inc.).
+Version 1 was plain HTML, CSS and JavaScript. **Version 2 (this version) rebuilds it with React components**, hooks and data modules.
+Next: a Node.js + Express + MongoDB backend for the contact form and projects.
 
 ## Features
 
 - Royal black & gold theme with premium typography
 - Hero with typing animation, floating portrait and gold dust particles
-- Sticky navigation with smooth scrolling and active-section highlight
-- Mobile hamburger menu
-- Skills (honest student-level indicators) and a separate "Currently Exploring" section
+- Sticky navigation, smooth scrolling, active-section highlight, scroll-progress bar, mobile menu
+- Skills with honest student-level indicators and a separate "Currently Exploring" section
 - Learning-journey timeline
-- Project showcase built from a JavaScript array (easy to add projects)
-- Certificate gallery with a details pop-up (images can be added later)
+- Project showcase driven by a data file (easy to add projects)
+- Certificate gallery with a details pop-up (`<dialog>`)
 - Contact form with validation and a copy-email button
-- Floating music player — **no autoplay**, play/pause, mute and volume
+- Floating music player — **no autoplay**
 - Subtle custom gold cursor (desktop only)
-- Fully responsive; respects `prefers-reduced-motion`
+- Responsive and `prefers-reduced-motion` friendly
 
 ## Technologies
 
-HTML5 · CSS3 (variables, grid, flexbox, animations) · Vanilla JavaScript (DOM, events, arrays/objects)
+React 19 · Vite · CSS3 (variables, grid, flexbox, animations) · JavaScript (ES modules)
 
-**Planned:** React · Node.js · Express.js · MongoDB
+**Planned:** Node.js · Express.js · MongoDB
+
+## React concepts used
+
+| Concept | Where |
+| --- | --- |
+| Components & props | every file in `src/components/` |
+| `useState` | Navbar, Contact, MusicPlayer, Certificates |
+| `useEffect` (+ cleanup) | Cursor, Particles, Navbar, Reveal |
+| `useRef` | Reveal, MusicPlayer, Particles, Cursor |
+| Custom hooks | `src/hooks/` (useTyping, useActiveSection, useReducedMotion) |
+| Lists with `.map()` and `key` | Skills, Certificates, Projects, Navbar |
+| Conditional rendering | Projects (live demo button), Education (note) |
+| Controlled form inputs | Contact |
 
 ## Folder structure
 
 ```
-BOOMI-PORTFOLIO/
-├── index.html
-├── css/
-│   ├── style.css          # colours, layout, components
-│   ├── animations.css     # all movement + reduced-motion rules
-│   └── responsive.css     # tablet & phone layouts
-├── js/
-│   ├── main.js            # data arrays, card rendering, modal, contact form
-│   ├── navigation.js      # navbar, mobile menu, active link, progress bar
-│   ├── cursor.js          # custom gold cursor
-│   ├── animations.js      # scroll reveal, typing effect, particles
-│   └── music.js           # music player
-├── assets/
-│   ├── images/            # profile photo, project screenshot
-│   ├── certificates/      # certificate images (add later)
-│   ├── icons/
-│   ├── music/
-│   └── documents/
-├── docs/                  # code-explanation + commands PDFs (coming next)
-├── README.md
-└── .gitignore
+boomi-portfolio/
+├── index.html              # the one HTML page (React draws inside #root)
+├── package.json            # project info + scripts + dependencies
+├── vite.config.js          # Vite settings
+├── public/
+│   └── assets/             # images, certificates, music (served as /assets/...)
+└── src/
+    ├── main.jsx            # entry point
+    ├── App.jsx             # root component (page order)
+    ├── components/         # Navbar, Hero, About, Skills, ... MusicPlayer
+    ├── hooks/              # custom hooks
+    ├── data/               # skills, certificates, projects, education, timeline
+    └── styles/             # style.css, animations.css, responsive.css
 ```
 
 ## Run locally
 
-1. Install [VS Code](https://code.visualstudio.com/) and the **Live Server** extension.
-2. Open the `BOOMI-PORTFOLIO` folder in VS Code.
-3. Right-click `index.html` → **Open with Live Server**.
-4. The site opens at `http://127.0.0.1:5500`.
+Requires **Node.js 20.19+** (22 LTS recommended).
 
-No build step or `npm install` is needed for this version.
+```bash
+npm install      # download dependencies (first time only)
+npm run dev      # start the dev server  ->  http://localhost:5173
+```
+
+## Build for production
+
+```bash
+npm run build    # creates the optimised "dist" folder
+npm run preview  # test the production build locally
+```
 
 ## Customising
 
-| I want to…                    | Edit…                                                |
-| ----------------------------- | ---------------------------------------------------- |
-| Add a project                 | `projects` array in `js/main.js`                     |
-| Add a certificate image       | Put file in `assets/certificates/`, set `image:` in `js/main.js` |
-| Change a skill level          | `skills` array in `js/main.js`                       |
-| Change colours                | `:root { ... }` at the top of `css/style.css`        |
-| Add a song                    | `tracks` array in `js/music.js`                      |
+| I want to…                 | Edit…                                                         |
+| -------------------------- | ------------------------------------------------------------- |
+| Add/change education       | `src/data/education.js`                                       |
+| Add a certificate image    | save `public/assets/certificates/<id>.jpg` (id from `certificates.js`) |
+| Add a project              | `src/data/projects.js`                                        |
+| Change a skill level       | `src/data/skills.js`                                          |
+| Change colours             | `:root { ... }` in `src/styles/style.css`                     |
+| Add a song                 | `tracks` array in `src/components/MusicPlayer.jsx`            |
 
 ## Backend / API / environment variables
 
-Not applicable yet. In the MERN phase the contact form will POST to an Express REST API that stores messages in MongoDB. Secrets will live in a `.env` file that is listed in `.gitignore` and is never uploaded.
+Not applicable yet. In the MERN phase the contact form will POST to an Express REST API that stores messages in MongoDB.
+Secrets will live in `.env` files that are listed in `.gitignore` (front-end variables must start with `VITE_`, and must never hold real secrets).
 
-## Deployment
+## Deployment (Vercel)
 
-Static deployment on **Vercel** by importing the GitHub repository (Framework preset: *Other*, no build command, output directory = project root). Every `git push` to `main` redeploys automatically.
+- Framework Preset: **Vite**
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- Install Command: `npm install`
 
-- **Live demo:** _add your Vercel URL here after deployment_
+Every push to `main` redeploys automatically. Pushing another branch creates a **preview deployment**.
+
+- **Live demo:** _add your Vercel URL here_
 - **Repository:** https://github.com/Boomish08/boomi-portfolio
-
-## Screenshots
-
-_Add screenshots here after running the site locally (`docs/screenshots/`)._
 
 ## Author
 
@@ -115,7 +123,6 @@ _Add screenshots here after running the site locally (`docs/screenshots/`)._
 
 ## Future improvements
 
-- Convert the frontend to React components
 - Node.js + Express REST API and MongoDB for contact messages and projects
-- Add real project screenshots, certificate images and a downloadable résumé
+- Real project screenshots, certificate images and a downloadable résumé
 - Deploy frontend and backend separately
